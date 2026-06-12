@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>דנה שמש · מאמנת NLP - כשאת משחררת בפנים, את חופשייה בחוץ</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;800;900&family=Assistant:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FBF6F2;
+    --bg-warm:#F6EBE4;
+    --surface:#FFFFFF;
+    --ink:#2C2622;
+    --ink-soft:#6E635B;
+    --ink-faint:#9C9088;
+    --pink:#FAD7D7;
+    --pink-soft:#FCE7E7;
+    --pink-wash:#FBEEEC;
+    --blush:#F8E6E2;
+    --blush-deep:#F1D5D0;
+    --rose:oklch(0.60 0.068 20);
+    --rose-deep:oklch(0.50 0.072 20);
+    --line:#ECE2DA;
+    --shadow:0 18px 50px -22px rgba(120,80,70,.30);
+    --shadow-sm:0 8px 24px -14px rgba(120,80,70,.30);
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;}
+  body{
+    font-family:'Assistant',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.7;
+    font-size:18px;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:clip;
+    max-width:100vw;
+  }
+  h1,h2,h3,h4{font-family:'Heebo',sans-serif;font-weight:700;line-height:1.2;letter-spacing:-.02em;}
+  .wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:24px;}
+  .script{font-family:'Heebo',serif;font-style:italic;font-weight:500;color:var(--rose-deep);}
+  a{color:inherit;}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;justify-content:center;gap:.55em;
+    font-family:'Assistant',sans-serif;font-weight:700;font-size:1.05rem;
+    padding:1rem 1.9rem;border-radius:999px;border:none;cursor:pointer;
+    text-decoration:none;transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s;
+    white-space:nowrap;
+  }
+  .btn-primary{background:#fff;color:var(--rose-deep);border:1.5px solid var(--blush-deep);box-shadow:0 14px 30px -16px rgba(190,110,118,.5);}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 38px -16px rgba(190,110,118,.6);border-color:var(--rose);}
+  .btn-ghost{background:transparent;color:var(--ink);border:1.5px solid var(--line);}
+  .btn-ghost:hover{border-color:var(--rose);color:var(--rose-deep);}
+  .btn .wa{width:1.25em;height:1.25em;fill:currentColor;flex:none;}
+
+  /* ---------- nav ---------- */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(251,246,242,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line);}
+  .nav-in{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;height:74px;}
+  .nav .logo{height:46px;mix-blend-mode:multiply;grid-column:2;grid-row:1;justify-self:center;}
+  .nav-cta{font-weight:700;font-size:.95rem;padding:.6rem 1.3rem;grid-column:1;grid-row:1;justify-self:start;}
+  @media(max-width:560px){.nav-cta{display:none;}}
+
+  /* ---------- hero ---------- */
+  .hero{position:relative;padding:54px 0 30px;}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;}
+  .eyebrow{display:inline-flex;align-items:center;gap:.5em;font-weight:600;font-size:1rem;letter-spacing:.04em;color:var(--rose-deep);margin-bottom:22px;}
+  .eyebrow .sep{color:var(--blush-deep);font-weight:400;}
+  .hero h1{font-size:clamp(2.6rem,5.8vw,4.1rem);font-weight:800;line-height:1.16;}
+  .hero h1 em{font-style:normal;color:var(--rose-deep);}
+  .hero p.lead{font-size:1.2rem;color:var(--ink-soft);margin:24px 0 32px;max-width:30em;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+  .hero-note{margin-top:20px;font-size:.95rem;color:var(--ink-faint);display:flex;align-items:center;gap:.5em;}
+
+  .hero-photo{position:relative;}
+  .hero-photo .frame{position:relative;border-radius:28px 28px 120px 28px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;}
+  .blob{position:absolute;border-radius:50%;background:var(--pink);filter:blur(2px);z-index:-1;}
+  .blob.b1{width:280px;height:280px;top:-40px;right:-50px;opacity:.6;}
+  .blob.b2{width:200px;height:200px;bottom:-30px;left:-40px;background:var(--pink-soft);opacity:.8;}
+  .floating-card{position:absolute;bottom:24px;right:-18px;background:#fff;border-radius:18px;padding:14px 18px;box-shadow:var(--shadow-sm);display:flex;align-items:center;gap:12px;max-width:230px;}
+  .floating-card .ic{width:42px;height:42px;border-radius:50%;background:var(--pink-soft);display:grid;place-items:center;flex:none;}
+  .floating-card .ic svg{width:22px;height:22px;stroke:var(--rose-deep);}
+  .floating-card span{font-size:.9rem;font-weight:600;line-height:1.4;color:var(--ink);}
+
+  /* ---------- ribbon ---------- */
+  .ribbon{background:#fff;color:var(--rose-deep);overflow:hidden;white-space:nowrap;padding:14px 0;margin-top:30px;border-block:1px solid var(--line);}
+  .ribbon-track{display:inline-flex;gap:48px;animation:scroll 28s linear infinite;}
+  .ribbon-track span{font-family:'Heebo',serif;font-size:1.05rem;opacity:.92;display:inline-flex;align-items:center;gap:48px;}
+  .ribbon-track span::after{content:"✦";color:var(--rose);}
+  @keyframes scroll{to{transform:translateX(-50%);}}
+
+  /* ---------- sections ---------- */
+  section{position:relative;}
+  .pad{padding:84px 0;}
+  .center{text-align:center;}
+  .kicker{font-family:'Heebo',serif;font-style:italic;font-weight:500;font-size:1.3rem;color:var(--rose-deep);display:block;margin-bottom:8px;}
+  .sec-title{font-size:clamp(2rem,4.4vw,3rem);}
+  .sec-sub{font-size:1.18rem;color:var(--ink-soft);max-width:34em;margin:20px auto 0;}
+
+  /* pain */
+  .pain{background:var(--bg-warm);}
+  .pain-intro{max-width:40em;margin:0 auto 44px;text-align:center;font-size:1.22rem;color:var(--ink-soft);}
+  .pain-intro strong{color:var(--ink);font-weight:700;}
+  .pain-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:880px;margin:0 auto;}
+  .pain-card{background:#fff;border-radius:20px;padding:26px 26px;box-shadow:var(--shadow-sm);border:1px solid var(--line);position:relative;}
+  .pain-card .q{font-family:'Heebo',serif;font-size:1.18rem;font-weight:700;line-height:1.4;color:var(--ink);}
+  .pain-card.quote{background:var(--pink-wash);border:1px solid var(--blush-deep);}
+  .pain-card.quote .q{color:var(--rose-deep);font-style:italic;}
+  .pain-foot{text-align:center;margin-top:40px;font-size:1.35rem;font-family:'Heebo',serif;line-height:1.5;max-width:30em;margin-inline:auto;}
+  .pain-foot .em{color:var(--rose-deep);font-weight:700;}
+
+  /* shift / bridge */
+  .bridge{text-align:center;}
+  .bridge .big{font-family:'Heebo',serif;font-size:clamp(1.9rem,4.5vw,3rem);font-weight:700;line-height:1.35;max-width:18em;margin:0 auto;}
+  .bridge .big .hl{background:linear-gradient(transparent 62%,var(--pink) 62%);padding:0 .1em;}
+  .bridge p{font-size:1.18rem;color:var(--ink-soft);max-width:30em;margin:26px auto 0;}
+
+  /* process / how nlp helps */
+  .how{background:var(--bg-warm);}
+  .how-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;}
+  .how-text h2{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:18px;}
+  .how-text p{color:var(--ink-soft);font-size:1.15rem;}
+  .feature-list{list-style:none;margin-top:30px;display:flex;flex-direction:column;gap:18px;}
+  .feature-list li{display:flex;gap:16px;align-items:flex-start;}
+  .feature-list .fi{width:46px;height:46px;border-radius:14px;background:var(--pink-soft);display:grid;place-items:center;flex:none;}
+  .feature-list .fi svg{width:24px;height:24px;stroke:var(--rose-deep);fill:none;stroke-width:1.8;}
+  .feature-list h4{font-family:'Heebo',serif;font-size:1.18rem;margin-bottom:2px;}
+  .feature-list p{font-size:1rem;color:var(--ink-soft);margin:0;}
+  .how-photo{border-radius:120px 28px 28px 28px;overflow:hidden;box-shadow:var(--shadow);aspect-ratio:4/5;position:relative;}
+  .how-photo img{width:100%;height:100%;object-fit:cover;}
+
+  /* steps */
+  .steps-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:50px;}
+  .step{background:#fff;border-radius:20px;padding:30px 24px;box-shadow:var(--shadow-sm);border:1px solid var(--line);position:relative;}
+  .step .num{font-family:'Heebo',serif;font-size:2.4rem;font-weight:900;color:var(--pink);line-height:1;margin-bottom:14px;}
+  .step h4{font-family:'Heebo',serif;font-size:1.2rem;margin-bottom:8px;}
+  .step p{font-size:.98rem;color:var(--ink-soft);}
+
+  /* credentials */
+  .creds{background:linear-gradient(160deg,var(--blush),var(--pink-wash));color:var(--ink);}
+  .creds .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:54px;align-items:center;}
+  .creds .kicker{color:var(--rose-deep);}
+  .creds h2{color:var(--ink);font-size:clamp(1.9rem,4vw,2.7rem);}
+  .creds .badge{display:inline-flex;align-items:center;gap:.5em;background:#fff;border:1px solid var(--line);padding:.5rem 1.1rem;border-radius:999px;font-weight:600;margin-bottom:22px;color:var(--rose-deep);box-shadow:var(--shadow-sm);}
+  .creds p.intro{color:var(--ink-soft);font-size:1.12rem;}
+  .cred-list{list-style:none;display:flex;flex-direction:column;gap:2px;}
+  .cred-list li{display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-bottom:1px solid var(--blush-deep);font-size:1.02rem;}
+  .cred-list li:last-child{border-bottom:none;}
+  .cred-list .ck{width:24px;height:24px;flex:none;border-radius:50%;background:var(--rose);display:grid;place-items:center;margin-top:2px;}
+  .cred-list .ck svg{width:13px;height:13px;stroke:#fff;stroke-width:2.5;fill:none;}
+  .cred-list b{color:var(--ink);font-weight:700;}
+  .cred-list span{color:var(--ink-soft);}
+
+  /* testimonials */
+  .tst-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:50px;}
+  .tst{background:#fff;border-radius:22px;padding:32px 28px;box-shadow:var(--shadow-sm);border:1px solid var(--line);display:flex;flex-direction:column;}
+  .tst .mark{font-family:'Heebo',serif;font-size:3.4rem;line-height:.6;color:var(--pink);height:30px;}
+  .tst p{font-size:1.06rem;color:var(--ink);margin:14px 0 22px;flex:1;}
+  .tst .who{display:flex;align-items:center;gap:12px;border-top:1px solid var(--line);padding-top:18px;}
+  .tst .av{width:44px;height:44px;border-radius:50%;background:var(--pink-soft);display:grid;place-items:center;font-family:'Heebo',serif;font-weight:700;color:var(--rose-deep);font-size:1.15rem;flex:none;}
+  .tst .who b{display:block;font-weight:700;font-size:1rem;}
+  .tst .who span{font-size:.88rem;color:var(--ink-faint);}
+  .stars{color:var(--rose);letter-spacing:2px;font-size:.95rem;margin-bottom:6px;}
+  /* testimonial screenshots gallery */
+  .tst-shots{columns:2;column-gap:24px;max-width:880px;margin:48px auto 0;}
+  .shot{break-inside:avoid;margin-bottom:24px;background:#fff;border-radius:20px;padding:12px;box-shadow:var(--shadow-sm);border:1px solid var(--line);transition:transform .3s,box-shadow .3s;}
+  .shot:hover{transform:translateY(-4px);box-shadow:var(--shadow);}
+  .shot img{width:100%;border-radius:13px;display:block;}
+  @media(max-width:680px){.tst-shots{columns:1;max-width:430px;}}
+
+  /* faq */
+  .faq{background:var(--bg-warm);}
+  .faq-list{max-width:760px;margin:46px auto 0;display:flex;flex-direction:column;gap:14px;}
+  .faq-item{background:#fff;border-radius:16px;border:1px solid var(--line);overflow:hidden;box-shadow:var(--shadow-sm);}
+  .faq-q{width:100%;text-align:right;background:none;border:none;cursor:pointer;padding:22px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Heebo',serif;font-size:1.14rem;font-weight:700;color:var(--ink);}
+  .faq-q .pl{width:26px;height:26px;flex:none;position:relative;transition:transform .3s;}
+  .faq-q .pl::before,.faq-q .pl::after{content:"";position:absolute;background:var(--rose);border-radius:2px;}
+  .faq-q .pl::before{width:14px;height:2px;top:12px;left:6px;}
+  .faq-q .pl::after{width:2px;height:14px;top:6px;left:12px;transition:transform .3s;}
+  .faq-item.open .pl::after{transform:rotate(90deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+  .faq-a p{padding:0 26px 24px;color:var(--ink-soft);font-size:1.05rem;}
+
+  /* final CTA + form */
+  .final{background:linear-gradient(160deg,var(--pink-wash),var(--bg));}
+  .final-card{background:#fff;border-radius:32px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;max-width:1000px;margin:0 auto;}
+  .final-left{padding:54px 48px;background:linear-gradient(155deg,var(--pink),var(--blush));color:var(--ink);display:flex;flex-direction:column;justify-content:center;position:relative;}
+  .final-left .kicker{color:var(--rose-deep);}
+  .final-left h2{color:var(--ink);font-size:clamp(1.9rem,4vw,2.6rem);}
+  .final-left p{color:var(--ink-soft);font-size:1.12rem;margin:18px 0 30px;}
+  .final-left .pts{list-style:none;display:flex;flex-direction:column;gap:12px;font-size:1.02rem;}
+  .final-left .pts li{display:flex;gap:10px;align-items:flex-start;}
+  .final-left .pts svg{width:20px;height:20px;stroke:var(--rose-deep);fill:none;stroke-width:2;flex:none;margin-top:.28em;}
+  .final-left .wa-btn{margin-top:32px;}
+  .form-side{padding:48px 44px;}
+  .form-side h3{font-family:'Heebo',serif;font-size:1.6rem;margin-bottom:6px;}
+  .form-side .fs-sub{color:var(--ink-soft);margin-bottom:26px;font-size:1rem;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-weight:600;font-size:.95rem;margin-bottom:7px;color:var(--ink);}
+  .field input,.field textarea{width:100%;border:1.5px solid var(--line);border-radius:12px;padding:.85rem 1rem;font-family:inherit;font-size:1rem;background:var(--bg);color:var(--ink);transition:border-color .2s,box-shadow .2s;}
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--rose);box-shadow:0 0 0 4px var(--pink-soft);}
+  .field textarea{resize:vertical;min-height:88px;}
+  .form-side .btn{width:100%;margin-top:6px;}
+  .form-success{display:none;text-align:center;padding:30px 10px;}
+  .form-success.show{display:block;}
+  .form-success .big-ic{width:74px;height:74px;border-radius:50%;background:var(--pink-soft);display:grid;place-items:center;margin:0 auto 18px;}
+  .form-success .big-ic svg{width:36px;height:36px;stroke:var(--rose-deep);stroke-width:2.2;fill:none;}
+  .form-success h3{margin-bottom:8px;}
+  .form-success p{color:var(--ink-soft);}
+
+  /* footer */
+  footer{background:var(--bg-warm);color:var(--ink-soft);padding:54px 0 36px;text-align:center;border-top:1px solid var(--line);}
+  footer .logo{height:60px;margin:0 auto 16px;display:block;mix-blend-mode:multiply;}
+  footer .tag{font-family:'Heebo',serif;font-style:italic;font-size:1.4rem;color:var(--rose-deep);margin-bottom:18px;}
+  footer .links{display:flex;gap:22px;justify-content:center;margin-bottom:18px;flex-wrap:wrap;}
+  footer .links a{color:var(--ink-soft);text-decoration:none;font-weight:600;font-size:.95rem;transition:color .2s;}
+  footer .links a:hover{color:var(--rose-deep);}
+  footer .meta{font-size:.85rem;color:var(--ink-faint);}
+
+  /* sticky mobile cta */
+  .sticky-cta{position:fixed;bottom:0;left:0;right:0;z-index:60;background:rgba(255,255,255,.95);backdrop-filter:blur(10px);border-top:1px solid var(--line);padding:12px 16px;display:none;box-shadow:0 -8px 24px -16px rgba(0,0,0,.3);}
+  .sticky-cta .btn{width:100%;}
+
+  /* reveal - visible by default; JS hides off-screen items then reveals on scroll */
+  .reveal{transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1);}
+  .reveal.is-hidden{opacity:0;transform:translateY(26px);}
+  @media(prefers-reduced-motion:reduce){.reveal.is-hidden{opacity:1;transform:none;}}
+
+  /* ------- responsive ------- */
+  @media(max-width:900px){
+    .hero-grid,.how-grid,.creds .wrap,.final-card{grid-template-columns:1fr;}
+    .hero-grid{gap:36px;}
+    .hero-text{text-align:center;}
+    .hero-text .eyebrow,.hero-text .hero-cta,.hero-text .hero-note{justify-content:center;}
+    .hero-photo{max-width:420px;margin:0 auto;}
+    .steps-grid{grid-template-columns:repeat(2,1fr);}
+    .tst-grid{grid-template-columns:1fr;max-width:480px;margin-inline:auto;}
+    .creds .wrap{gap:34px;}
+    .final-left{order:0;}
+  }
+  @media(max-width:560px){
+    body{font-size:17px;}
+    .pad{padding:62px 0;}
+    .pain-grid{grid-template-columns:1fr;}
+    .steps-grid{grid-template-columns:1fr;}
+    .hero{padding-top:34px;}
+    .final-left,.form-side{padding:38px 26px;}
+    .floating-card{right:auto;left:8px;bottom:12px;max-width:200px;}
+    .sticky-cta{display:block;}
+    body{padding-bottom:78px;}
+    footer{padding-bottom:90px;}
+  }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <div style="width:100%;height:100%;background:#FBF6F2;display:flex;align-items:center;justify-content:center;padding:30%;box-sizing:border-box;">
+    <img src="assets/logo.png" alt="דנה שמש" style="max-width:100%;max-height:100%;object-fit:contain;mix-blend-mode:multiply;" />
+  </div>
+</template>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="wrap nav-in">
+    <img src="assets/logo.png" alt="דנה שמש - In my words" class="logo" />
+    <a href="https://wa.link/y274wv" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      <svg class="wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.515 5.26l-.999 3.648 3.973-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+      בואי נדבר
+    </a>
+  </div>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-text reveal">
+      <span class="eyebrow">דנה שמש <span class="sep">|</span> מאמנת NLP</span>
+      <h1>כשאת משחררת בפנים,<br /><em>את חופשייה בחוץ.</em></h1>
+      <p class="lead">אני עוזרת לך לשחרר את מה שחוסם אותך בפנים - ולהגביר בחוץ את מי שאת. להפסיק לצמצם את עצמך, ולהתחיל לתפוס את המקום שמגיע לך בעולם.</p>
+    </div>
+    <div class="hero-photo reveal">
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <div class="frame"><img src="assets/photo-portrait1.jpg" alt="דנה שמש" /></div>
+      <div class="floating-card">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <span>תהליך אישי בו את עובדת ומייצרת בחייך את מה שחשוב לך. תהליך שבו את שמה עלייך.</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ RIBBON ============ -->
+<div class="ribbon" aria-hidden="true">
+  <div class="ribbon-track">
+    <span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span><span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span><span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span><span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span><span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span><span>להגביר את מי שאת</span><span>לתפוס מקום בעולם</span><span>לשחרר מהשורש</span><span>להפסיק לצמצם את עצמך</span>
+  </div>
+</div>
+
+<!-- ============ PAIN ============ -->
+<section class="pad pain">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">בואי נדבר בכנות</span>
+      <h2 class="sec-title">מכירה את הפער הזה?</h2>
+    </div>
+    <p class="pain-intro reveal">בפנים את יודעת בדיוק כמה את שווה. כמה את טובה, חכמה, מוכשרת - כמה יש לך מה להגיד ומה לתת. <strong>את יודעת את זה. את מרגישה את זה.</strong> אבל אז מגיע רגע האמת... ומשהו בתוכך נסגר. מתכווץ. ואת לא את.</p>
+    <div class="pain-grid reveal">
+      <div class="pain-card quote"><p class="q">"למה אני לא מצליחה פשוט להביא את עצמי?"</p></div>
+      <div class="pain-card"><p class="q">את נסגרת דווקא ברגע שהכי חשוב לך להיפתח</p></div>
+      <div class="pain-card"><p class="q">אינסוף מחשבות והלקאה עצמית אחרי כל סיטואציה</p></div>
+      <div class="pain-card"><p class="q">במקומות מסוימים את הכי-את שיש, ובאחרים פתאום נעלמת</p></div>
+    </div>
+    <p class="pain-foot reveal">הפער הזה, בין האישה שאת יודעת שאת לבין זו שיוצאת החוצה - <span class="em">הוא הכי מתסכל שיש.</span><br />אני יודעת. הייתי שם בעצמי.</p>
+  </div>
+</section>
+
+<!-- ============ BRIDGE ============ -->
+<section class="pad bridge">
+  <div class="wrap reveal">
+    <p class="big">אפשר לעשות שינוי. אפשר <span class="hl">לשחרר את מה שחוסם אותך</span> כל כך חזק בפנים - ולהגביר חזק את מי שאת לעולם בחוץ.</p>
+    <p>בעזרת כלים מעולם ה‑NLP, אנחנו נוגעות במה שצריך ויוצרות שינוי אמיתי שנשאר איתך.</p>
+    <div class="hero-cta" style="justify-content:center;margin-top:34px;">
+      <a href="https://wa.link/y274wv" target="_blank" rel="noopener" class="btn btn-primary">
+        <svg class="wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.515 5.26l-.999 3.648 3.973-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+        יאללה, אני מתחילה בצעד
+      </a>
+      <a href="#how" class="btn btn-ghost">איך עובד תהליך אצלי</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOW NLP HELPS ============ -->
+<section class="pad how" id="how">
+  <div class="wrap how-grid">
+    <div class="how-text reveal">
+      <span class="kicker">מה קורה בתהליך</span>
+      <h2>ניתן לרגש הזה מקום - ונשחרר אותו מהשורש</h2>
+      <p>במפגשים שלנו בקליניקה, בעזרת כלים מעולם ה‑NLP, נבין יחד מאיפה החסם מגיע ונעבוד על שחרור של מה שעוצר אותך - כדי שתוכלי להיות את במלואך: חופשייה, בטוחה ונוכחת.</p>
+      <ul class="feature-list">
+        <li>
+          <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 22V12M12 12L4 8M12 12l8-4M4 8l8-4 8 4v8l-8 4-8-4z"/></svg></div>
+          <div><h4>שחרור מהשורש</h4><p>נעבוד יחד עם מה שמתרחש בתת‑המודע. בעזרת כלים פרקטיים וממוקדים אנחנו יוצרות יחד שינוי אמיתי - כזה שמרגישים בחיים עצמם.</p></div>
+        </li>
+        <li>
+          <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 2l2.2 6.6h7L15.5 13l2.2 6.6L12 15.6 6.3 19.6 8.5 13 2.8 8.6h7z"/></svg></div>
+          <div><h4>כלים שנשארים איתך</h4><p>תכירי כלים פרקטיים שתוכלי להיעזר בהם גם בהמשך החיים.</p></div>
+        </li>
+        <li>
+          <div class="fi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><h4>בקצב שלך</h4><p>אין מספר מפגשים קבוע - לפי הצורך, הקצב וכמות הדברים שאת מביאה וחשוב לך לעבוד עליהם. בקצב שלך, אני כאן איתך כדי לעזור לך להגיע למטרה הזו שחשובה לך כל כך.</p></div>
+        </li>
+        <li>
+          <div class="fi"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+          <div><h4>ליווי חם ובטוח</h4><p>מרחב שבו את יכולה להיות לגמרי את - בלי שיפוטיות, עם חופש להביא את הדברים, לעשות יחד עבודה וליצור את השינוי שאת רוצה.</p></div>
+        </li>
+        <li>
+          <div class="fi"><svg viewBox="0 0 24 24"><path d="M12 3l1.9 4.6L18.5 9l-3.5 3 1 4.8L12 14.6 7.9 16.8l1-4.8-3.4-3 4.6-1.4z"/></svg></div>
+          <div><h4>חיבור לכוחות שבך</h4><p>תתחברי ליכולות ולכוחות שקיימים בך, אלה שאולי שכחת לרגע שהן שם.</p></div>
+        </li>
+      </ul>
+    </div>
+    <div class="how-photo reveal"><img src="assets/photo-portrait2.jpg" alt="דנה שמש בקליניקה" /></div>
+  </div>
+</section>
+
+<!-- ============ STEPS ============ -->
+<section class="pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">אני איתך</span>
+      <h2 class="sec-title">איך אנחנו מתחילות?</h2>
+      <p class="sec-sub">הצעד הראשון קטן וקל. כל השאר - נעשה יחד.</p>
+    </div>
+    <div class="steps-grid reveal">
+      <div class="step"><div class="num">01</div><h4>משאירה פרטים</h4><p>לוחצת על הכפתור וכותבת לי בוואטסאפ, או משאירה פרטים בטופס.</p></div>
+      <div class="step"><div class="num">02</div><h4>שיחת טלפון קצרה</h4><p>נדבר רגע, נבין מה חשוב לך לשנות ולאן את רוצה להגיע, ונבדוק התאמה בינינו.</p></div>
+      <div class="step"><div class="num">03</div><h4>בוחרות יחד</h4><p>בקצב שלך. את מחליטה אם זה הזמן והמקום הנכונים בשבילך.</p></div>
+      <div class="step"><div class="num">04</div><h4>יוצאות לדרך</h4><p>נפגשות בקליניקה בפתח תקווה או בזום, ואת יוצאת אל מסע השינוי שלך - אל החופש להיות את.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CREDENTIALS ============ -->
+<section class="pad creds">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="badge">★ NLP Master</span>
+      <span class="kicker">את שווה את ההשקעה שלך</span>
+      <h2>ההסמכות והתעודות שלי</h2>
+    </div>
+    <ul class="cred-list reveal">
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>NLP פרקטישינר</b> <span>· בי"ס Ambition, מכללת וינגייט</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>NLP פרקטישינר</b> <span>· מכללת NLP לשם שינוי</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>NLP Master</b> <span>· מכללת מטרות</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>אימון אישי (Coaching)</b> <span>· בי"ס Ambition, מכללת וינגייט</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>פסיכולוגיה חיובית</b> <span>· מרכז מיטיב, אוניברסיטת רייכמן</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>NLP חרדות וטראומות</b> <span>· מכללת מטרות</span></div></li>
+      <li><span class="ck"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span><div><b>התמחות בטיפול בחרדות, טראומה ופוסט‑טראומה</b> <span>· מכללת NLP‑PRO</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ TESTIMONIALS ============ -->
+<section class="pad">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">מהלב שלהן</span>
+      <h2 class="sec-title">מתאמנות משתפות</h2>
+      <p class="sec-sub">הודעות ממתאמנות ומתאמנים יקרים:</p>
+    </div>
+    <div class="tst-shots reveal">
+      <div class="shot"><img src="assets/tst-3.jpeg" alt="המלצה ממתאמנה" loading="lazy" /></div>
+      <div class="shot"><img src="assets/tst-1.jpeg" alt="המלצה ממתאמנה" loading="lazy" /></div>
+      <div class="shot"><img src="assets/tst-4.jpeg" alt="המלצה ממתאמן" loading="lazy" /></div>
+      <div class="shot"><img src="assets/tst-2.jpeg" alt="מכתב תודה בכתב יד ממתאמנה" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="pad faq">
+  <div class="wrap">
+    <div class="center reveal">
+      <span class="kicker">לפני שמתחילות</span>
+      <h2 class="sec-title">שאלות שחשוב לי לענות עליהן</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">כמה מפגשים צריך בתהליך? <span class="pl"></span></button>
+        <div class="faq-a"><p>אין מספר קבוע. זה תהליך אישי לחלוטין - לפי הקצב, הצורך והעומק של מה שאת מביאה. בשיחת הטלפון הקצרה נדבר על זה ונבין יחד מה מתאים לך.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">כמה זה עולה? <span class="pl"></span></button>
+        <div class="faq-a"><p>המחיר הוא פר פגישה ולא לפי חבילות, ובשיחת הטלפון הקצרה שלנו נדבר על כל הפרטים. אני מאמינה שקודם כל חשוב להכיר, להרגיש שיש בינינו חיבור והתאמה - ומשם נמשיך יחד.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">איפה מתקיימים המפגשים? <span class="pl"></span></button>
+        <div class="faq-a"><p>בקליניקה שלי בפתח תקווה, במרחב חם ונעים - או בזום. את בוחרת מה מתאים לך יותר.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">מה זה בעצם NLP? <span class="pl"></span></button>
+        <div class="faq-a"><p>NLP היא שיטה שעובדת עם השפה ועם התת‑מודע כדי לשנות דפוסים שמעכבים אותך. בעזרת כלים פרקטיים וממוקדים אנחנו יוצרות יחד שינוי אמיתי - כזה שמרגישים בחיים עצמם.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">אני לא בטוחה שזה מתאים לי <span class="pl"></span></button>
+        <div class="faq-a"><p>בדיוק בשביל זה יש את שיחת הטלפון הקצרה, ללא התחייבות. נבדוק יחד אם יש התאמה בינינו, ואת זו שבוחרת לאן להמשיך. בקצב שלך, אין מחויבות.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">כמה מהר מרגישים שינוי? <span class="pl"></span></button>
+        <div class="faq-a"><p>השינוי הוא תהליך אישי, וכל אחת חווה אותו בקצב שלה. כבר מהמפגשים הראשונים אפשר לשים לב לתנועה - הקלה קטנה, נשימה רחבה יותר, מחשבה חדשה - ומשם השינוי ממשיך לחלחל ולגדול, ואת מגיעה למטרות שלך.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FINAL CTA + FORM ============ -->
+<section class="pad final">
+  <div class="wrap">
+    <div class="final-card reveal">
+      <div class="final-left">
+        <span class="kicker">הצעד הראשון שלך</span>
+        <h2>העניקי לעצמך את החופש להיות את</h2>
+        <p>הצעד הראשון הוא הכי פשוט שיש - רק ללחוץ "אשמח שנדבר". משם נמשיך יחד.</p>
+        <ul class="pts">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> לוחצת כאן למטה, מגיעה לוואטסאפ, שולחת לי את ההודעה המוכנה ואנחנו מתאמות זמן לשיחת היכרות קצרה בטלפון</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> בשיחה - נדבר רגע, נבין מה חשוב לך לשנות ולאן את רוצה להגיע, ונבדוק התאמה בינינו</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> קובעות זמן לפגישה בקליניקה או בזום, לפי הבחירה שלך</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg> יוצאות לדרך - נפגשות ומתחילות לעבוד יחד על מה שחשוב לך לשחרר, לחזק וליצור.</li>
+        </ul>
+        <a href="https://wa.link/y274wv" target="_blank" rel="noopener" class="btn btn-primary wa-btn">
+          <svg class="wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.515 5.26l-.999 3.648 3.973-1.207zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413z"/></svg>
+          דנה, אשמח שנדבר
+        </a>
+      </div>
+      <div class="form-side">
+        <form id="leadForm">
+          <h3>השאירי לי כאן פרטים</h3>
+          <p class="fs-sub">ואחזור אלייך לתיאום שיחה קצרה 💛</p>
+          <div class="field"><label>איך קוראים לך?</label><input type="text" name="name" required placeholder="השם שלך" /></div>
+          <div class="field"><label>טלפון</label><input type="tel" name="phone" required placeholder="050-0000000" /></div>
+          <div class="field"><label>איזה שינוי את רוצה לעשות? <span style="color:var(--ink-faint);font-weight:400">(לא חובה)</span></label><textarea name="msg" placeholder="כמה מילים על מה שמביא אותך..."></textarea></div>
+          <button type="submit" class="btn btn-primary">דנה, אשמח שתחזרי אליי</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <div class="big-ic"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></div>
+          <h3>קיבלתי! 💛</h3>
+          <p>תודה שעשית את הצעד הראשון. אחזור אלייך בהקדם לתיאום שיחה קצרה.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <img src="assets/logo.png" alt="דנה שמש" class="logo" />
+    <p class="tag">כשאת משחררת בפנים, את חופשייה בחוץ</p>
+    <div class="links">
+      <a href="https://www.instagram.com/dana_shemesh__inmywords/" target="_blank" rel="noopener">אינסטגרם</a>
+      <a href="https://www.dana-inmywords.com" target="_blank" rel="noopener">האתר שלי</a>
+      <a href="https://wa.link/y274wv" target="_blank" rel="noopener">וואטסאפ</a>
+    </div>
+    <p class="meta">דנה שמש · מאמנת NLP Master · קליניקה בפתח תקווה / בזום</p>
+  </div>
+</footer>
+
+<!-- ============ STICKY MOBILE CTA ============ -->
+<div class="sticky-cta">
+  <a href="https://wa.link/y274wv" target="_blank" rel="noopener" class="btn btn-primary">
+    <svg class="wa" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.515 5.26l-.999 3.648 3.973-1.207z"/></svg>
+    יאללה, אני מתחילה בצעד
+  </a>
+</div>
+
+<script>
+  // FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var item=btn.closest('.faq-item');
+      var ans=item.querySelector('.faq-a');
+      var open=item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(it){
+        it.classList.remove('open');it.querySelector('.faq-a').style.maxHeight=null;
+      });
+      if(!open){item.classList.add('open');ans.style.maxHeight=ans.scrollHeight+'px';}
+    });
+  });
+  // form
+  document.getElementById('leadForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    document.getElementById('leadForm').style.display='none';
+    document.getElementById('formSuccess').classList.add('show');
+  });
+  // reveal on scroll (fail-safe: visible by default, hide only off-screen items)
+  var reveals=document.querySelectorAll('.reveal');
+  reveals.forEach(function(el){
+    if(el.getBoundingClientRect().top > window.innerHeight*0.82){el.classList.add('is-hidden');}
+  });
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){if(en.isIntersecting){en.target.classList.remove('is-hidden');io.unobserve(en.target);}});
+  },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+  reveals.forEach(function(el){if(el.classList.contains('is-hidden'))io.observe(el);});
+</script>
+</body>
+</html>
