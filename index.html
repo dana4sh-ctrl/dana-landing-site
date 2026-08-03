@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!-- Google tag (gtag.js) - Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-W1C61H2LE0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-W1C61H2LE0');
+</script>
 <title>דנה שמש · מאמנת NLP · כשאת משחררת בפנים, את חופשייה בחוץ</title>
 <meta name="description" content="דנה שמש, מאמנת NLP. עוזרת לך לשחרר את מה שחוסם אותך בפנים ולתפוס את המקום שמגיע לך, בשחרור, בביטחון ובחיבור לעצמך. קליניקה בפתח תקווה / בזום." />
 <meta property="og:title" content="דנה שמש · מאמנת NLP" />
@@ -658,6 +666,23 @@
     entries.forEach(function(en){if(en.isIntersecting){en.target.classList.remove('is-hidden');io.unobserve(en.target);}});
   },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
   reveals.forEach(function(el){if(el.classList.contains('is-hidden'))io.observe(el);});
+</script>
+<!-- GA4 custom events: WhatsApp clicks, lead submits, FAQ opens (scroll depth is auto via Enhanced Measurement) -->
+<script>
+  (function(){
+    function ev(name,params){ if(typeof gtag==='function'){ gtag('event',name,params||{}); } }
+    document.querySelectorAll('a[href*="wa.link"],a[href*="wa.me"],a[href*="whatsapp"]').forEach(function(a){
+      a.addEventListener('click',function(){ ev('whatsapp_click',{link_text:(a.textContent||'').trim().slice(0,40)}); });
+    });
+    var lf=document.getElementById('leadForm');
+    if(lf){ lf.addEventListener('submit',function(){ ev('generate_lead',{method:'landing_form'}); }); }
+    document.querySelectorAll('.faq-q').forEach(function(b){
+      b.addEventListener('click',function(){
+        var item=b.closest('.faq-item');
+        if(item && item.classList.contains('open')){ ev('faq_open',{question:(b.textContent||'').trim().slice(0,60)}); }
+      });
+    });
+  })();
 </script>
 </body>
 </html>
