@@ -1,6 +1,6 @@
 {
-  "name": "הלוח של דנה",
-  "short_name": "הלוח של דנה",
+  "name": "דנה ניהול",
+  "short_name": "דנה ניהול",
   "start_url": "/board/",
   "scope": "/board/",
   "display": "browser",
