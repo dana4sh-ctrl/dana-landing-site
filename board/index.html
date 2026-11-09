@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>הלוח של דנה</title>
+<meta name="apple-mobile-web-app-title" content="הלוח של דנה">
+<link rel="apple-touch-icon" href="/assets/board-icon-180.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/board-icon-192.png">
+<link rel="manifest" href="/board/manifest.json">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&display=swap">
+<script>
+  // After the one-time setup, opening this page goes straight to the board.
+  var BOARD = "https://claude.ai/artifact/K5aYVyFuVTNRsyMyifsqoc";
+  try { if (localStorage.getItem("boardDirect") === "1" && location.search.indexOf("stay") < 0) location.replace(BOARD); } catch (e) {}
+</script>
+<style>
+  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;background:#fff;font-family:'Assistant',Arial,sans-serif;color:#2B2326;padding:24px;box-sizing:border-box;text-align:center}
+  main{max-width:360px;display:flex;flex-direction:column;align-items:center;gap:18px}
+  img{width:220px;max-width:70vw;height:auto}
+  a.btn,button{display:block;width:100%;padding:16px;border-radius:999px;font:600 18px 'Assistant',Arial,sans-serif;border:0;cursor:pointer;text-decoration:none}
+  a.btn{background:#F4BFCE;color:#2B2326}
+  button{background:#fff;color:#6A5C62;border:1.5px solid #ECE3E0}
+  p{margin:0;color:#6A5C62;font-size:16px;line-height:1.6}
+</style>
+</head>
+<body>
+<main>
+  <img src="/assets/logo.png" alt="Dana Sh">
+  <a class="btn" id="open" href="https://claude.ai/artifact/K5aYVyFuVTNRsyMyifsqoc">לפתוח את הלוח</a>
+  <button id="direct" type="button">מעכשיו לפתוח ישר את הלוח</button>
+  <p>לוחצים פעם אחת על "מעכשיו לפתוח ישר את הלוח", ומאז האייקון במסך הבית פותח את הלוח בלי הדף הזה.</p>
+</main>
+<script>
+  document.getElementById("direct").addEventListener("click", function () {
+    try { localStorage.setItem("boardDirect", "1"); } catch (e) {}
+    location.href = BOARD;
+  });
+</script>
+</body>
+</html>
